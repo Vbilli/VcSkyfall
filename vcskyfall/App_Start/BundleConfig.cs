@@ -27,6 +27,10 @@ namespace vcskyfall
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/font-awesome.min.css"));
+            bundles.Add(new StyleBundle("~/Content/bootstrap").Include(
+                      "~/Content/bootstrap.css",
+                      "~/Content/clean-blog.min.css",
+                      "~/Content/font-awesome.min.css"));
         }
     }
 }
