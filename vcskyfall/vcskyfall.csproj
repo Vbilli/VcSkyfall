@@ -225,6 +225,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="image\about-bg.jpg" />
+    <Content Include="image\car.png" />
     <Content Include="image\contact-bg.jpg" />
     <Content Include="image\home-bg.jpg" />
     <Content Include="image\post-bg.jpg" />
@@ -298,6 +299,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\SamplePost.cshtml" />
+    <Content Include="Views\Account\FashionLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

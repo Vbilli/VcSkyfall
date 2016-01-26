@@ -109,4 +109,9 @@ namespace vcskyfall.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+    public class BigLoginViewModel
+    {
+        public RegisterViewModel RegisterViewModel { get; set; }
+        public LoginViewModel LoginViewModel { get; set; }
+    }
 }

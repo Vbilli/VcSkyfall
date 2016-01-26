@@ -1,64 +1,124 @@
 ﻿@using vcskyfall.Models
-@model LoginViewModel
+@model BigLoginViewModel
 @{
     ViewBag.Title = "Log in";
 }
+<header class="intro-header" style="background-image: url('../../Image/car.png');background-attachment:fixed">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1 id="menu-toggle">欢迎回来</h1>
+                    <hr class="small">
+                    <ul class="nav nav-pills" style="display:inline-block">
+                        <li id="loginTab" role="presentation" class="active"><a class="subheading">登录</a></li>
+                        <li id="registerTab" role="presentation"><a class="subheading">注册</a></li>
 
-<h2>@ViewBag.Title.</h2>
-@*<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">*@
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "sr-only" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </ul>
+
+                    <div id="loginpanel">
+                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <h2>@*Use a local account to log in.*@</h2>
+                            <hr />
+                            <div>
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.LabelFor(m => m.LoginViewModel.Email, new { @class = "sr-only" })
+                            </div>
+                            <div>
+                                @Html.TextBoxFor(m => m.LoginViewModel.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.LoginViewModel.Email, "", new { @class = "text-danger" })
+                            </div>
+
+
+                            @Html.LabelFor(m => m.LoginViewModel.Password, new { @class = "sr-only" })
+
+                            @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LoginViewModel.Password, "", new { @class = "text-danger" })
+
+                            <div class="checkbox" style="float:left">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.LoginViewModel.RememberMe)
+                                    @Html.LabelFor(m => m.LoginViewModel.RememberMe)
+                                </label>
+
+                            </div>
+                            <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block" />
+
+                            <p>
+                                @* @Html.ActionLink("Register as a new user", "Register")*@
+                            </p>
+                        }
+                    </div>
+                    <div id="registerpanel" style="display:none">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <hr />
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
+
+                            @Html.LabelFor(m => m.RegisterViewModel.Email, new { @class = "sr-only" })
+
+                            @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control" })
+
+
+                            @Html.LabelFor(m => m.RegisterViewModel.Password, new { @class = "sr-only" })
+
+                            @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
+
+
+                            @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "sr-only" })
+
+                            @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
+
+
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Register" />
+
+                        }
+
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "sr-only" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Log in" class="btn btn-default" />
-                    </div>
-                </div>
-                <p>
-                    @Html.ActionLink("Register as a new user", "Register")
-                </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
-            }
-        @*</section>
-    </div>*@
-    @*<div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
-    </div>*@
-@*</div>*@
+            </div>
+        </div>
+    </div>
+</header>
+
+
 
 @section Scripts {
     <link href="~/Content/signin.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/jqueryval")
+    <style type="text/css">
+        #loginTab:hover {
+            cursor: pointer;
+        }
+
+        #registerTab:hover {
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $(function () {
+
+            var login = document.getElementById("loginTab");
+            var register = document.getElementById("registerTab");
+            $("#loginTab").on("click", function () {
+                $(this).removeClass("active");
+                $("#loginpanel").css("display", "block");
+                $("#registerpanel").css("display", "none")
+                $(this).addClass("active");
+                $("#registerTab").removeClass("active")
+            })
+            $("#registerTab").on("click", function () {
+                $(this).removeClass("active");
+                $("#loginpanel").css("display", "none");
+                $("#registerpanel").css("display", "block")
+                $(this).addClass("active");
+                $("#loginTab").removeClass("active")
+            })
+        })
+
+    </script>
 }
