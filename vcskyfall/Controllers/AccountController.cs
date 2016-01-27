@@ -66,7 +66,7 @@ namespace vcskyfall.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
+        public async Task<ActionResult> Login(BigLoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace vcskyfall.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(model.LoginViewModel.Email, model.LoginViewModel.Password, model.LoginViewModel.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -83,44 +83,7 @@ namespace vcskyfall.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                case SignInStatus.Failure:
-                default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
-            }
-        }
-
-        [AllowAnonymous]
-        public ActionResult FashionLogin(string returnUrl)
-        {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
-        }
-
-        //
-        // POST: /Account/Login
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> FashionLogin(LoginViewModel model, string returnUrl)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
-            switch (result)
-            {
-                case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
-                case SignInStatus.LockedOut:
-                    return View("Lockout");
-                case SignInStatus.RequiresVerification:
-                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.LoginViewModel.RememberMe });
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
@@ -184,12 +147,12 @@ namespace vcskyfall.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(BigLoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+                var user = new ApplicationUser { UserName = model.RegisterViewModel.Email, Email = model.RegisterViewModel.Email };
+                var result = await UserManager.CreateAsync(user, model.RegisterViewModel.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -206,7 +169,7 @@ namespace vcskyfall.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View("Login",model);
         }
 
         //
