@@ -19,62 +19,59 @@
                     <div id="loginpanel">
                         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
                         {
-                        @Html.AntiForgeryToken()
-                        <h2>@*Use a local account to log in.*@</h2>
-                        <hr />
-                        <div>
+                            @Html.AntiForgeryToken()
+
+                            <hr />
+
                             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                             @Html.LabelFor(m => m.LoginViewModel.Email, new { @class = "sr-only" })
-                        </div>
-                        <div>
+
                             @Html.TextBoxFor(m => m.LoginViewModel.Email, new { @class = "form-control" })
                             @Html.ValidationMessageFor(m => m.LoginViewModel.Email, "", new { @class = "text-danger" })
-                        </div>
 
+                            @Html.LabelFor(m => m.LoginViewModel.Password, new { @class = "sr-only" })
 
-                        @Html.LabelFor(m => m.LoginViewModel.Password, new { @class = "sr-only" })
+                            @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.LoginViewModel.Password, "", new { @class = "text-danger" })
 
-                        @Html.PasswordFor(m => m.LoginViewModel.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.LoginViewModel.Password, "", new { @class = "text-danger" })
+                            <div class="checkbox" style="float:left">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.LoginViewModel.RememberMe)
+                                    @Html.LabelFor(m => m.LoginViewModel.RememberMe)
+                                </label>
 
-                        <div class="checkbox" style="float:left">
-                            <label>
-                                @Html.CheckBoxFor(m => m.LoginViewModel.RememberMe)
-                                @Html.LabelFor(m => m.LoginViewModel.RememberMe)
-                            </label>
+                            </div>
+                            <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block" />
 
-                        </div>
-                        <input type="submit" value="Log in" class="btn btn-lg btn-primary btn-block" />
-
-                        <p>
-                            @* @Html.ActionLink("Register as a new user", "Register")*@
-                        </p>
+                            <p>
+                                @* @Html.ActionLink("Register as a new user", "Register")*@
+                            </p>
                         }
                     </div>
                     <div id="registerpanel" style="display:none">
                         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-signin", role = "form" }))
                         {
-                        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-                        <hr />
-                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                            <hr />
+                            @Html.ValidationSummary("", new { @class = "text-danger" })
 
-                        @Html.LabelFor(m => m.RegisterViewModel.Email, new { @class = "sr-only" })
+                            @Html.LabelFor(m => m.RegisterViewModel.Email, new { @class = "sr-only" })
 
-                        @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control" })
-
-
-                        @Html.LabelFor(m => m.RegisterViewModel.Password, new { @class = "sr-only" })
-
-                        @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
+                            @Html.TextBoxFor(m => m.RegisterViewModel.Email, new { @class = "form-control" })
 
 
-                        @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "sr-only" })
+                            @Html.LabelFor(m => m.RegisterViewModel.Password, new { @class = "sr-only" })
 
-                        @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
+                            @Html.PasswordFor(m => m.RegisterViewModel.Password, new { @class = "form-control" })
 
 
-                        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Register" />
+                            @Html.LabelFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "sr-only" })
+
+                            @Html.PasswordFor(m => m.RegisterViewModel.ConfirmPassword, new { @class = "form-control" })
+
+
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" value="Register" />
 
                         }
 
@@ -113,29 +110,6 @@
             -o-background-size: cover;
         }
     </style>
-    <script>
-        $(function () {
-            var footer = document.getElementsByTagName("footer");
-            footer[0].parentNode.removeChild(footer[0]);
-            var login = document.getElementById("loginTab");
-            var register = document.getElementById("registerTab");
-            $("#loginTab").on("click", function () {
-                $(this).removeClass("active");
-                //$("#loginpanel").css("display", "block");
-                $("#loginpanel").fadeIn();
-                $("#registerpanel").css("display", "none")
-                $(this).addClass("active");
-                $("#registerTab").removeClass("active")
-            })
-            $("#registerTab").on("click", function () {
-                $(this).removeClass("active");
-                $("#loginpanel").css("display", "none");
-                //$("#registerpanel").css("display", "block")
-                $("#registerpanel").fadeIn();
-                $(this).addClass("active");
-                $("#loginTab").removeClass("active")
-            })
-        })
 
-    </script>
+    <script src="~/Scripts/Login.js"></script>
 }
