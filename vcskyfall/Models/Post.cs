@@ -15,7 +15,9 @@ namespace vcskyfall.Models
         public string Subject { get; set; }
         public string Creater { get; set; }
         public bool? Deleted { get; set; }
+        public string Tittle { get; set; }
         public DateTime TimeStamp { get; set; }
+        public string PicturePath { get; set; }
         public string Content { get; set;  }
         public int Level { get; set; }
         public virtual LevelType LevelType { get; set; }

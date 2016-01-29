@@ -205,6 +205,14 @@
     <Compile Include="Migrations\201601281006452_AddPost.Designer.cs">
       <DependentUpon>201601281006452_AddPost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201601290317414_Adddataintopost.cs" />
+    <Compile Include="Migrations\201601290317414_Adddataintopost.Designer.cs">
+      <DependentUpon>201601290317414_Adddataintopost.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201601291001134_addpicturepath.cs" />
+    <Compile Include="Migrations\201601291001134_addpicturepath.Designer.cs">
+      <DependentUpon>201601291001134_addpicturepath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -251,6 +259,7 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\cbpAnimatedHeader.js" />
+    <Content Include="Scripts\ckeditor.js" />
     <Content Include="Scripts\clean-blog.js" />
     <Content Include="Scripts\clean-blog.min.js" />
     <Content Include="Scripts\creative.js" />
@@ -310,6 +319,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\SamplePost.cshtml" />
     <Content Include="Views\Account\FashionLogin.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,6 +335,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201601281006452_AddPost.resx">
       <DependentUpon>201601281006452_AddPost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601290317414_Adddataintopost.resx">
+      <DependentUpon>201601290317414_Adddataintopost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201601291001134_addpicturepath.resx">
+      <DependentUpon>201601291001134_addpicturepath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
