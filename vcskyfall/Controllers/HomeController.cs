@@ -9,6 +9,8 @@ namespace vcskyfall.Controllers
 {
     public class HomeController : Controller
     {
+        public int Take = 3;
+        
         public ActionResult Index()
         {
             using (var db = new VcSkyfall())
@@ -66,6 +68,38 @@ namespace vcskyfall.Controllers
                 return View(query);
             }
 
+        }
+        public JsonResult AjaxMoreArcticle(int number)
+        {
+            using (var db = new VcSkyfall())
+            {
+                var jsonResult = new Dictionary<int, object[]>();
+                var PostQuery = (from p
+                            in db.Posts
+                             orderby p.TimeStamp
+                             descending
+                             select p)
+                             .Skip(number)
+                            .Take(Take)
+                            .ToArray();
+                var json = Array.ConvertAll(PostQuery, query => new
+                {
+                    id=query.id,
+                    Creater = query.Creater,
+                    Content = query.Content,
+                    PicturePath = query.PicturePath,
+                    TimeStamp = query.TimeStamp,
+                    Subject = query.Subject,
+                    Tittle = query.Tittle
+                });
+                //for (int i = 0; i < Take; i++)
+                //{
+                //    jsonResult.Add(i, json);
+                //}
+
+
+                return Json(json);
+            }
         }
     }
 }
