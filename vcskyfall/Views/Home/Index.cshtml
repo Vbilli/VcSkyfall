@@ -21,7 +21,7 @@
                 <div class="post-preview">
                     <a href="@Url.Action("SamplePost", "Home",new {id=post.id },null)">
                         <h2 class="post-title">
-                            @Html.DisplayFor(m=>post.Tittle)
+                            @Html.DisplayFor(m => post.Tittle)
                             @*//Man must explore, and this is exploration at its greatest*@
                         </h2>
                         <h3 class="post-subtitle">
@@ -33,55 +33,100 @@
                 </div>
                 <hr>
             }
-            
+
             @*<hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
-                    </h2>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Science has not yet mastered prophecy
-                    </h2>
-                    <h3 class="post-subtitle">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
-            </div>
-            <hr>
-            <div class="post-preview">
-                <a href="post.html">
-                    <h2 class="post-title">
-                        Failure is not an option
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                    </h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
-            </div>
-            <hr>*@
+                <div class="post-preview">
+                    <a href="post.html">
+                        <h2 class="post-title">
+                            I believe every human has a finite number of heartbeats. I don't intend to waste any of mine.
+                        </h2>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
+                </div>
+                <hr>
+                <div class="post-preview">
+                    <a href="post.html">
+                        <h2 class="post-title">
+                            Science has not yet mastered prophecy
+                        </h2>
+                        <h3 class="post-subtitle">
+                            We predict too much for the next year and yet far too little for the next ten.
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
+                </div>
+                <hr>
+                <div class="post-preview">
+                    <a href="post.html">
+                        <h2 class="post-title">
+                            Failure is not an option
+                        </h2>
+                        <h3 class="post-subtitle">
+                            Many say exploration is part of our destiny, but it’s actually our duty to future generations.
+                        </h3>
+                    </a>
+                    <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
+                </div>
+                <hr>*@
             <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="#">往期回顾 &rarr;</a>
-                </li>
-            </ul>
+            <div class="loading">
+                <i class="fa fa-spinner fa-pulse"></i>
+                <a>正在加载</a>
+            </div>
+            <div class="BackToTop">
+                <a href="#">
+                    <i class="fa fa-arrow-circle-up fa-2x"></i>
+                </a>
+            </div>
+            @*<ul class="pager">
+                    <li class="next">
+                        <a href="#">往期回顾 &rarr;</a>
+                    </li>
+                </ul>*@
         </div>
     </div>
 </div>
 <hr>
 
 @section Scripts{
-    
+    <style>
+        .loading {
+            border-bottom-color: rgb(187, 187, 187);
+            box-sizing: border-box;
+            /*cursor: none;*/
+            background-color: transparent;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            text-align: center;
+            border: 1px solid #bbb;
+            display: none;
+            background-color: gainsboro;
+            color: #666 !important;
+            text-shadow: 0px 1px 0px #fff;
+            background: #f1f1f2;
+            background: -webkit-linear-gradient(top,#f8f8f9,#e6e6e8);
+            background: linear-gradient(to bottom,#f8f8f9,#e6e6e8);
+            border: 1px solid #bbb;
+            box-shadow: inset 0px 1px 0px #fff, 0px 1px 0px rgba(0,0,0,0.1);
+        }
+
+        .BackToTop {
+            position: fixed;
+            bottom: 200px;
+            left: 70%;
+            z-index: 2;
+            margin-left: 230px;
+            /*background-color: #404040;*/
+            width: 38px;
+            height: 38px;
+            text-align: center;
+            display: none;
+            opacity: 0.8;
+        }
+
+           
+    </style>
     <script src="~/Scripts/clean-blog.min.js"></script>
     <script src="~/Scripts/HomePage.js"></script>
 
-    }
+}

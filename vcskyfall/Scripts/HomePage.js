@@ -5,9 +5,17 @@
         if ($(document).scrollTop() <= 0) {
             //alert("滚动条已经到达顶部为0");
         }
-
-
-        if ($(document).scrollTop() >= $(document).height() - $(window).height()) {
+        var scrollt = document.documentElement.scrollTop + document.body.scrollTop;
+        if (scrollt > 200) {
+            $('.BackToTop').css('display', 'block');
+            $('.BackToTop').show();
+        }
+        else
+        {
+            $(".BackToTop").hide();
+            $('.BackToTop').css('display', 'none');
+        }
+        if ($(document).scrollTop() >= $(document).height() - $(window).height()-200) {
             var Post = document.getElementsByClassName("post-preview");
             var PostCount = Post.length;
             GetMoreArticle(PostCount);
@@ -17,6 +25,7 @@
 })
 
 function GetMoreArticle(AlreadyLoadedNum) {
+    $('.loading').css('display', 'block');
     $.ajax({
         url: '/Home/AjaxMoreArcticle',
         type: 'post',
@@ -25,7 +34,7 @@ function GetMoreArticle(AlreadyLoadedNum) {
             var count = ReturnedJson.length;
             if (count != 0) {
                 var CurrentArcticle = document.getElementsByClassName("post-preview");
-                var last = document.getElementsByClassName("pager")[0];
+                var last = document.getElementsByClassName("loading")[0];
                 for (var i = 0; i < count ; i++) {
                     var date = new Date();
                     date.setDate(ReturnedJson[i].TimeStamp);
@@ -39,11 +48,12 @@ function GetMoreArticle(AlreadyLoadedNum) {
                             + ReturnedJson[i].Creater
                             + "</a> 发布，于 "
                             + date
-                            + "</p></div>"; // HTML string
+                            + "</p></div><hr>"; // HTML string
                     var div = document.createElement('div');
                     div.innerHTML = HtmlString;
                     var elements = div.childNodes;
                     last.parentNode.insertBefore(div, last);
+                    $('.loading').css('display', 'none');
                     //<div class='post-preview'>
                     //    <a href='/Home/SamplePost/14'>
                     //        <h2 class='post-title'>
@@ -58,6 +68,10 @@ function GetMoreArticle(AlreadyLoadedNum) {
                     //    <p class='post-meta'>由 <a href='#'>刘惠彬</a> 发布，于 1/25/2016 12:00:00 PM</p>
                     //</div>
                 }
+            }
+            else
+            {
+                $('.loading').html("没有更多内容了~~")
             }
         }
         });
