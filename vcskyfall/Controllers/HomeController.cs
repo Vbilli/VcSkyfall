@@ -27,7 +27,7 @@ namespace vcskyfall.Controllers
                 return View(posts);
             }
         }
-        public ActionResult create()
+        public ActionResult Create()
         {
             return View();
         }
