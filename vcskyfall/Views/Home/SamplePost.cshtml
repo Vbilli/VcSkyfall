@@ -42,7 +42,7 @@
                             var content = (@Model.Content).Split(new char[] { '\r' });
                             foreach (var p in content)
                             {
-                                <p>@HttpContext.Current.Server.HtmlDecode(p)</p>
+                                <p>@p</p>
                             }
                         }
 
@@ -79,5 +79,5 @@
 
 @section Scripts{
     <script src="~/Scripts/clean-blog.min.js"></script>
-
+    <script src="~/Scripts/ShowPost.js"></script>
 }
