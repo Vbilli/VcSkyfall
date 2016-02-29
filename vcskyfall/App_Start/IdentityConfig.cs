@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using vcskyfall.Models;
+using Twilio;
 
 namespace vcskyfall
 {
@@ -28,6 +29,13 @@ namespace vcskyfall
         public Task SendAsync(IdentityMessage message)
         {
             // Plug in your SMS service here to send a text message.
+            string AccountSid = "AC6203f02407e3c9d319c5b7cff4503c4e";
+            string AuthToken = "96ac9baa370fc825b921eafc6081f3c7";
+            var twilio = new TwilioRestClient(AccountSid, AuthToken);
+            var msg = twilio.SendMessage("+12093951555", message.Destination, message.Body, "");
+
+            //Console.WriteLine(msg.Sid);
+
             return Task.FromResult(0);
         }
     }

@@ -1,4 +1,8 @@
 ﻿@model vcskyfall.Models.Post
+@{
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+}
 
 
 @using (Html.BeginForm("CreatePost","Post", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-signin", role = "form" }))
@@ -6,7 +10,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Post</h4>
+        <h4>新建</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
