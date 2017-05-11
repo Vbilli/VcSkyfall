@@ -3,7 +3,7 @@ namespace vcskyfall.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class AddPost : DbMigration
+    public partial class test : DbMigration
     {
         public override void Up()
         {
@@ -24,7 +24,9 @@ namespace vcskyfall.Migrations
                         Subject = c.String(),
                         Creater = c.String(),
                         Deleted = c.Boolean(),
+                        Tittle = c.String(),
                         TimeStamp = c.DateTime(nullable: false),
+                        PicturePath = c.String(),
                         Content = c.String(),
                         Level = c.Int(nullable: false),
                         LevelType_id = c.Int(),

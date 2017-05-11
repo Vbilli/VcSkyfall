@@ -12,6 +12,18 @@
         </div>
     </div>
 </header>
+<div>
+	<video id="my-player" class="video-js" controls preload="auto" poster="../../Image/home-bg.jpg" data-setup='{"autoplay":"true"}'>
+		<source src="~/Video/IMG_4352.mp4" />
+		<source src="~/Video/IMG_4353.mp4" />
+		<source src="~/Video/IMG_4354.mp4" />
+		<source src="~/Video/IMG_4356.mp4" />
+		<p class="vjs-no-js">
+			To view this video please enable Javascript, and consider upgrading to a web browser that
+			<a href="http://videojs.com/html5-video-support/" target="_blank"></a>
+		</p>
+	</video>
+</div>
 <!-- Main Content -->
 <div class="container">
     <div class="row">
@@ -126,7 +138,10 @@
 
            
     </style>
+	<link href="~/Content/video-js.css" rel="stylesheet" />
+	<link href="~/Content/video-js.min.css" rel="stylesheet" />
     <script src="~/Scripts/clean-blog.min.js"></script>
     <script src="~/Scripts/HomePage.js"></script>
+	<script src="~/Scripts/video.min.js"></script>
 
 }
